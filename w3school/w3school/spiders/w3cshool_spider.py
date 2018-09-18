@@ -27,18 +27,16 @@ class W3schoolSpider(Spider):
             title = site.xpath('a/text()').extract()
             link = site.xpath('a/@href').extract()
             desc = site.xpath('a/@title').extract()
-            log.msg("desc title+++" + str(title), loglevel='INFO')
 
             for t in title:
-                item['title'] = t.encode('utf-8')
+                item['title'] = t
             for l in link:
-                item['link'] = l.encode('utf-8')
+                item['link'] = l
             for d in desc:
-                item['desc'] = d.encode('utf-8')
+                item['desc'] = d
             # item['title'] = [t.encode('utf-8') for t in title]
             # item['link'] = [l.encode('utf-8') for l in link]
             # item['desc'] = [d.encode('utf-8') for d in desc]
-            log.msg("desc site***" + str(item), loglevel='INFO')
             items.append(item)
 
             # 记录
