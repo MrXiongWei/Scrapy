@@ -7,14 +7,15 @@
 import codecs
 import json
 
+from scrapy import log
+
 
 class W3SchoolPipeline(object):
     def __init__(self):
         self.file = codecs.open('w3school_data_utf8.json', 'wb', encoding='utf-8')
 
     def process_item(self, item, spider):
-        if isinstance(item,bytes):
-            line = json.dumps(dict(item)) + '\n'
-            # print line
-            self.file.write(line.decode("unicode_escape"))
+        line = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        # print line
+        self.file.write(line)
         return item
